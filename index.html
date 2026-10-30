@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffe Senja | Coffee & Stories</title>
+
+<style>
+:root {
+  --cream: #fff9f2;
+  --orange: #a64d24;
+  --orange-light: #d98243;
+  --brown: #382219;
+  --muted: #88766b;
+  --white: #ffffff;
+  --shadow: 0 5px 18px #38221912;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  padding-bottom: 85px;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(1120px, 94%);
+  margin: auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,249,242,.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #eadfd4;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 0;
+  gap: 15px;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.logo span { color: var(--orange); }
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--brown);
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--orange-light); }
+
+.cart-button, .primary {
+  border: none;
+  background: var(--orange);
+  color: white;
+  border-radius: 25px;
+  padding: 11px 17px;
+  font-weight: bold;
+}
+
+.cart-button:hover, .primary:hover {
+  background: #783719;
+}
+
+.count {
+  display: inline-grid;
+  place-items: center;
+  background: white;
+  color: var(--orange);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+}
+
+/* HERO */
+.hero { padding: 25px 0 20px; }
+
+.search-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border: 1px solid #eee2d7;
+  border-radius: 30px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--brown);
+}
+
+.search-icon { font-size: 21px; }
+
+.hero-banner {
+  min-height: 360px;
+  border-radius: 27px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+  background:
+    linear-gradient(90deg, rgba(25,12,7,.91), rgba(25,12,7,.50) 48%, rgba(25,12,7,.03)),
+    url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1500&q=85")
+    center 52% / cover;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 470px;
+  padding: 35px;
+}
+
+.script {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 25px;
+  color: #f0c39c;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(37px, 5vw, 59px);
+  line-height: 1.05;
+  margin: 8px 0 15px;
+}
+
+.hero p {
+  color: #f8e9df;
+  max-width: 340px;
+  line-height: 1.7;
+}
+
+.hero .primary {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 10px;
+  background: #a64d24;
+}
+
+/* SECTION */
+section { padding: 25px 0; }
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 29px;
+}
+
+.section-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.view-all {
+  border: none;
+  background: transparent;
+  color: var(--orange);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* KATEGORI */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  text-align: center;
+}
+
+.category {
+  border: 0;
+  background: transparent;
+  color: var(--brown);
+  padding: 0;
+}
+
+.category-icon {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 9px;
+  background: white;
+  border: 1px solid #eee3d9;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  font-size: 29px;
+  transition: .2s;
+}
+
+.category.active .category-icon,
+.category:hover .category-icon {
+  background: var(--orange);
+  color: white;
+  border-color: var(--orange);
+}
+
+.category span:last-child {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* MENU */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 19px;
+}
+
+.menu-card {
+  overflow: hidden;
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid #eee5dd;
+  transition: transform .2s;
+}
+
+.menu-card:hover { transform: translateY(-4px); }
+
+.menu-photo {
+  height: 205px;
+  position: relative;
+  overflow: hidden;
+  background: #ead8c7;
+}
+
+.menu-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s;
+}
+
+.menu-card:hover .menu-photo img {
+  transform: scale(1.04);
+}
+
+.tag {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #65371fe8;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.menu-info { padding: 15px; }
+
+.menu-info h3 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.description {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 35px;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.rating {
+  font-size: 12px;
+  margin-bottom: 11px;
+}
+
+.rating span { color: #d58b31; }
+
+.menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.price {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.add-btn {
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: white;
+  background: var(--orange);
+  font-size: 23px;
+}
+
+.add-btn:hover { background: #713319; }
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 35px 0;
+}
+
+/* PROMO */
+.promo {
+  margin: 30px 0;
+  padding: 28px;
+  min-height: 190px;
+  border-radius: 24px;
+  background:
+    linear-gradient(90deg, #f2dfca 0%, #f2dfcae8 42%, #f2dfca00 100%),
+    url("https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=85")
+    center / cover;
+  display: flex;
+  align-items: center;
+}
+
+.promo-content { max-width: 400px; }
+
+.promo small {
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.promo h2 {
+  font: bold 39px Georgia, serif;
+  margin: 5px 0;
+}
+
+.promo p { margin: 5px 0 17px; }
+
+.promo a {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 25px;
+  background: var(--orange);
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* TENTANG */
+.about {
+  background: #f4e6d7;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 25px auto;
+}
+
+.about h2 {
+  font: 30px Georgia, serif;
+  margin: 7px 0;
+}
+
+.about p {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 750px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+/* CARA PESAN */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.step {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid #eee3d9;
+}
+
+.step strong {
+  color: var(--orange);
+  font-size: 23px;
+}
+
+.step p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ALAMAT */
+.location-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.location-link:hover {
+  color: #d98243;
+  text-decoration: underline;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  z-index: 12;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,249,242,.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid #eadfd4;
+  padding: 8px max(10px, calc((100% - 650px)/2));
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottom-nav a, .bottom-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--brown);
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  font-size: 11px;
+  min-width: 50px;
+}
+
+.bottom-nav .nav-icon { font-size: 22px; }
+
+.bottom-nav .order-nav {
+  background: var(--orange);
+  color: white;
+  border-radius: 50%;
+  width: 57px;
+  height: 57px;
+  justify-content: center;
+  margin-top: -25px;
+  box-shadow: 0 5px 15px #a64d2433;
+}
+
+.bottom-nav .order-nav .nav-icon { font-size: 25px; }
+
+/* KERANJANG */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #1b100ca8;
+  z-index: 30;
+}
+
+.overlay.show { display: block; }
+
+.drawer {
+  position: fixed;
+  z-index: 31;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(430px, 100%);
+  background: var(--cream);
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(105%);
+  transition: transform .25s;
+}
+
+.drawer.show { transform: translateX(0); }
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eadfd4;
+  padding-bottom: 15px;
+}
+
+.drawer-head h2 {
+  margin: 0;
+  font: 28px Georgia, serif;
+}
+
+.close-btn {
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  background: #f1e2d3;
+  font-size: 22px;
+}
+
+#cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px 0;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 35px 0;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eadfd4;
+}
+
+.cart-item h4 { margin: 0 0 5px; }
+.cart-item small { color: var(--muted); }
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.qty button {
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  background: #f1dfcc;
+}
+
+.remove {
+  border: none;
+  background: transparent;
+  color: #a64d24;
+  margin-top: 5px;
+}
+
+.cart-total {
+  border-top: 1px solid #eadfd4;
+  padding-top: 15px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.checkout { width: 100%; padding: 14px; }
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* NOMOR ANTREAN */
+.modal-wrap {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #1b100caa;
+  padding: 20px;
+  place-items: center;
+}
+
+.modal-wrap.show { display: grid; }
+
+.receipt {
+  width: min(420px, 100%);
+  background: white;
+  padding: 30px;
+  border-radius: 23px;
+  text-align: center;
+}
+
+.receipt-icon { font-size: 38px; }
+
+.receipt h2 {
+  font: 29px Georgia, serif;
+  margin-bottom: 5px;
+}
+
+.queue-number {
+  font-size: 58px;
+  font-weight: bold;
+  color: var(--orange);
+  margin: 15px 0;
+}
+
+.receipt p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background: #fbefdf;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 17px 0;
+  font-weight: bold;
+}
+
+.receipt .primary { width: 100%; }
+
+footer {
+  background: var(--brown);
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 13px;
+}
+
+@media (min-width: 900px) {
+  .hero-banner { min-height: 410px; }
+}
+
+@media (max-width: 650px) {
+  .nav { flex-wrap: wrap; }
+  .logo { font-size: 24px; }
+  nav { display: none; }
+  .cart-button { padding: 9px 12px; }
+
+  .hero-banner {
+    min-height: 320px;
+    background-position: 58% center;
+  }
+
+  .hero-content { padding: 23px; }
+  .hero h1 { font-size: 42px; }
+  .hero p { font-size: 13px; max-width: 230px; }
+
+  .categories {
+    display: flex;
+    overflow-x: auto;
+    padding: 5px 2px 12px;
+    gap: 18px;
+  }
+
+  .category { min-width: 76px; }
+
+  .category-icon {
+    width: 62px;
+    height: 62px;
+    font-size: 25px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .menu-photo { height: 145px; }
+  .menu-info { padding: 11px; }
+  .menu-info h3 { font-size: 14px; }
+  .description { font-size: 11px; min-height: 48px; }
+  .price { font-size: 14px; }
+  .add-btn { width: 34px; height: 34px; }
+
+  .section-heading h2 { font-size: 25px; }
+  .promo { min-height: 175px; padding: 20px; }
+  .promo h2 { font-size: 31px; }
+  .promo p { max-width: 180px; font-size: 12px; }
+
+  .steps { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 370px) {
+  .menu-photo { height: 120px; }
+  .menu-info h3 { font-size: 12px; }
+  .price { font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo" style="text-decoration:none;color:inherit">
+      Coffe <span>Senja.</span>
+    </a>
+
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#menu">Menu</a>
+      <a href="#cara-pesan">Cara Pesan</a>
+    </nav>
+
+    <button class="cart-button" id="open-cart">
+      🛒 <span class="count" id="cart-count">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+  <section class="hero" id="home">
+    <div class="search-row">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input id="search" type="search"
+               placeholder="Cari kopi, makanan, dan lainnya...">
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <div class="hero-content">
+        <div class="script">Good Coffee</div>
+        <h1>Good Vibes<br>at Coffe Senja</h1>
+        <p>
+          Kopi pilihan, suasana nyaman, dan cerita yang
+          membuat harimu terasa lebih hangat.
+        </p>
+        <a href="#menu" class="primary">PESAN SEKARANG ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KATEGORI -->
+  <section>
+    <div class="categories">
+      <button class="category active" data-category="Semua">
+        <span class="category-icon">☕</span>
+        <span>Semua</span>
+      </button>
+
+      <button class="category" data-category="Kopi">
+        <span class="category-icon">🫘</span>
+        <span>Kopi</span>
+      </button>
+
+      <button class="category" data-category="Makanan">
+        <span class="category-icon">🥪</span>
+        <span>Makanan</span>
+      </button>
+
+      <button class="category" data-category="Dessert">
+        <span class="category-icon">🍰</span>
+        <span>Dessert</span>
+      </button>
+
+      <button class="category" data-category="Minuman">
+        <span class="category-icon">🧋</span>
+        <span>Minuman</span>
+      </button>
+
+      <button class="category" data-category="Snack">
+        <span class="category-icon">🥐</span>
+        <span>Snack</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="section-heading">
+      <div>
+        <h2>Popular Picks</h2>
+        <p>Menu favorit untuk menemani waktu senjamu.</p>
+      </div>
+      <button class="view-all" id="show-all">Lihat Semua ↗</button>
+    </div>
+
+    <div class="menu-grid" id="menu-grid"></div>
+  </section>
+
+  <!-- PROMO -->
+  <div class="promo">
+    <div class="promo-content">
+      <small>WAKTUNYA NGOPI</small>
+      <h2>Senja Special</h2>
+      <p>Nikmati kopi favoritmu dan ciptakan cerita baru hari ini.</p>
+      <a href="#menu">PILIH MENU ↗</a>
+    </div>
+  </div>
+
+  <!-- TENTANG -->
+  <section id="tentang" class="about">
+    <div class="eyebrow">Our little coffee house</div>
+    <h2>Selamat datang di Coffe Senja.</h2>
+    <p>
+      Coffe Senja adalah tempat untuk menikmati secangkir kopi,
+      melepas penat, dan berbagi cerita. Dengan suasana hangat,
+      pilihan menu yang beragam, dan pelayanan yang ramah,
+      kami ingin menjadikan setiap kunjungan sebagai pengalaman
+      sederhana yang berkesan.
+    </p>
+    <p>
+      📍 <a class="location-link"
+      href="https://www.google.com/maps/search/?api=1&query=Pasir+Putih+Sawangan+Kota+Depok"
+      target="_blank" rel="noopener noreferrer">
+      Pasir Putih, Sawangan, Kota Depok
+      </a>
+    </p>
+  </section>
+
+  <!-- CARA PESAN -->
+  <section id="cara-pesan">
+    <div class="section-heading">
+      <div>
+        <h2>Cara Memesan</h2>
+        <p>Pesan mudah, pembayaran langsung di kasir.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <strong>01</strong>
+        <h3>Pilih menu</h3>
+        <p>Pilih makanan atau minuman, lalu tekan tombol tambah.</p>
+      </div>
+
+      <div class="step">
+        <strong>02</strong>
+        <h3>Periksa keranjang</h3>
+        <p>Atur jumlah menu dan periksa total pesananmu.</p>
+      </div>
+
+      <div class="step">
+        <strong>03</strong>
+        <h3>Bayar di kasir</h3>
+        <p>Dapatkan nomor antrean dan tunjukkan kepada kasir.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+  <footer>
+  <div class="container">
+    <strong style="font-size:22px;">Coffe Senja.</strong>
+    <p>Secangkir hangat, sejuta cerita.</p>
+
+    <p>
+      📍 <a class="location-link"
+      href="https://www.google.com/maps/search/?api=1&query=Pasir+Putih+Sawangan+Kota+Depok"
+      target="_blank" rel="noopener noreferrer">
+      Pasir Putih, Sawangan, Kota Depok
+      </a>
+    </p>
+
+    <hr style="border:0;border-top:1px solid #ffffff40;margin:20px 0;">
+
+    <div style="line-height:1.9;">
+      <h3>MEET THE TEAM</h3>
+
+      <p><strong>Kelompok 4</strong></p>
+
+      <p><strong>Anggota Kelompok:</strong></p>
+      <p>
+        Ahmad Rafi Pasha, 
+        Ferdy Noorsyahri, 
+        Intan Febiola<br>
+        Lona Ariska, 
+        Nailla Aprilia, 
+        Sholikatu Izza
+      </p>
+
+      <p style="margin-top:25px; font-size:22px; font-weight:bold;"> 
+        <strong>Aplikasi Komputer Bisnis</strong>
+      </>
+
+        <p style="font-size:12px; margin-top:3px; color:#e8d5c8;">
+      <p>Website By Ahmad Rafi Pasha</p>
+    </div>
+
+    <p style="margin-top:20px;">
+      © <span id="year"></span> Coffe Senja. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- NAVIGASI BAWAH -->
+<div class="bottom-nav">
+  <a href="#home">
+    <span class="nav-icon">⌂</span>
+    <span>Home</span>
+  </a>
+
+  <a href="#menu">
+    <span class="nav-icon">▤</span>
+    <span>Menu</span>
+  </a>
+
+  <button class="order-nav" id="bottom-order">
+    <span class="nav-icon">☕</span>
+    <span>Order</span>
+  </button>
+
+  <a href="#cara-pesan">
+    <span class="nav-icon">♧</span>
+    <span>Info</span>
+  </a>
+
+  <button id="bottom-cart">
+    <span class="nav-icon">🛒</span>
+    <span>Keranjang</span>
+  </button>
+</div>
+
+<!-- KERANJANG -->
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h2>Keranjang Pesanan</h2>
+    <button class="close-btn" id="close-cart">×</button>
+  </div>
+
+  <div id="cart-items"></div>
+
+  <div class="cart-total">
+    <div class="total-row">
+      <span>Total</span>
+      <span id="cart-total">Rp0</span>
+    </div>
+
+    <button class="primary checkout" id="checkout">
+      Buat Pesanan
+    </button>
+
+    <p class="hint">Pembayaran dilakukan di kasir.</p>
+  </div>
+</aside>
+
+<!-- NOMOR ANTREAN -->
+<div class="modal-wrap" id="order-modal">
+  <div class="receipt">
+    <div class="receipt-icon">☕</div>
+    <div class="eyebrow">Pesanan berhasil dibuat</div>
+    <h2>Nomor Antrean</h2>
+
+    <div class="queue-number" id="queue-number">A001</div>
+
+    <p>
+      Silakan tunjukkan nomor antrean ini kepada kasir.
+      Pembayaran dilakukan langsung di kasir.
+    </p>
+
+    <div class="receipt-total">
+      <span>Total pesanan</span>
+      <span id="receipt-total">Rp0</span>
+    </div>
+
+    <button class="primary" id="finish-order">Selesai</button>
+  </div>
+</div>
+
+<script>
+/*
+  DATA MENU COFFE SENJA
+  Foto memakai URL eksternal. Jika foto gagal dimuat,
+  gambar cadangan akan ditampilkan otomatis.
+*/
+const menu = [
+  {
+    id: 1,
+    name: "Cappuccino",
+    category: "Kopi",
+    desc: "Espresso dengan susu steamed dan foam lembut.",
+    price: 22000,
+    rating: "4.8",
+    tag: "BESTSELLER",
+    image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 2,
+    name: "Chocolate Muffin",
+    category: "Dessert",
+    desc: "Muffin cokelat lembut dengan rasa yang kaya.",
+    price: 18000,
+    rating: "4.7",
+    tag: "CHEF'S PICK",
+    image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 3,
+    name: "Chicken Sandwich",
+    category: "Makanan",
+    desc: "Roti isi ayam, sayuran, dan saus spesial.",
+    price: 28000,
+    rating: "4.6",
+    tag: "POPULAR",
+    image: "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 4,
+    name: "Caffe Latte",
+    category: "Kopi",
+    desc: "Espresso dan susu lembut dengan latte art.",
+    price: 24000,
+    rating: "4.8",
+    tag: "FAVORITE",
+    image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 5,
+    name: "Croissant Butter",
+    category: "Snack",
+    desc: "Pastry berlapis yang renyah dan buttery.",
+    price: 22000,
+    rating: "4.7",
+    tag: "FRESH DAILY",
+    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 6,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    desc: "Kue cokelat lembut untuk teman ngopi.",
+    price: 25000,
+    rating: "4.8",
+    tag: "SWEET PICK",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 7,
+    name: "Iced Coffee",
+    category: "Minuman",
+    desc: "Kopi dingin yang segar dan menyegarkan.",
+    price: 20000,
+    rating: "4.7",
+    tag: "CHILLED",
+    image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 8,
+    name: "French Fries",
+    category: "Snack",
+    desc: "Kentang goreng renyah untuk teman santai.",
+    price: 18000,
+    rating: "4.6",
+    tag: "SNACK TIME",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 9,
+    name: "Matcha Latte",
+    category: "Minuman",
+    desc: "Matcha dengan susu lembut dan rasa khas.",
+    price: 26000,
+    rating: "4.7",
+    tag: "MUST TRY",
+    image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 10,
+    name: "Lychee Tea",
+    category: "Minuman",
+    desc: "Teh segar dengan rasa leci manis dan aroma buah.",
+    price: 20000,
+    rating: "4.9",
+    tag: "FRESH & SWEET",
+    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 11,
+    name: "Americano",
+    category: "Kopi",
+    desc: "Espresso dengan air panas dan bisa iced, beraroma kuat dan nikmat.",
+    price: 18000,
+    rating: "4.7",
+    tag: "HOT COFFEE",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 12,
+    name: "Iced Chocolate",
+    category: "Minuman",
+    desc: "Cokelat dingin creamy dengan rasa cokelat pekat.",
+    price: 23000,
+    rating: "4.7",
+    tag: "CHOCOLATE LOVER",
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 13,
+  name: "Roti Bakar",
+  category: "Snack",
+  price: 18000,
+  image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=800&q=80",
+  desc: "Roti panggang dengan tekstur renyah di luar dan lembut di dalam, dilengkapi topping manis yang menggugah selera.",
+  rating: 4.8,
+  tag: "FAVORIT"
+  },
+  {
+    id: 14,
+    name: "Nasi Goreng",
+    category: "Makanan",
+    desc: "Nasi goreng gurih dengan telur dan pelengkap yang lezat.",
+    price: 25000,
+    rating: "4.9",
+    tag: "FAVORIT",
+    image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=85"
+  },
+];
+
+const cart = {};
+let selectedCategory = "Semua";
+let searchText = "";
+
+const rupiah = number =>
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(number);
+
+const menuGrid = document.getElementById("menu-grid");
+const cartItems = document.getElementById("cart-items");
+const cartCount = document.getElementById("cart-count");
+const cartTotal = document.getElementById("cart-total");
+const drawer = document.getElementById("drawer");
+const overlay = document.getElementById("overlay");
+const orderModal = document.getElementById("order-modal");
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+/* TAMPILKAN MENU */
+function renderMenu() {
+  const filtered = menu.filter(item => {
+    const categoryMatch =
+      selectedCategory === "Semua" ||
+      item.category === selectedCategory;
+
+    const searchMatch =
+      (item.name + " " + item.desc + " " + item.category)
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+
+    return categoryMatch && searchMatch;
+  });
+
+  if (filtered.length === 0) {
+    menuGrid.innerHTML =
+      '<div class="no-results">Menu tidak ditemukan. Coba kata kunci lain.</div>';
+    return;
+  }
+
+  menuGrid.innerHTML = filtered.map(item => `
+    <article class="menu-card">
+      <div class="menu-photo">
+        <img
+          src="${item.image}"
+          alt="${item.name}"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x400/f0dfca/65371f?text=${encodeURIComponent(item.name)}';"
+        >
+        <span class="tag">${item.tag}</span>
+      </div>
+
+      <div class="menu-info">
+        <h3>${item.name}</h3>
+        <p class="description">${item.desc}</p>
+
+        <div class="rating">
+          <span>★</span> ${item.rating}
+        </div>
+
+        <div class="menu-bottom">
+          <span class="price">${rupiah(item.price)}</span>
+          <button class="add-btn"
+            data-add="${item.id}"
+            aria-label="Tambah ${item.name}">+</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+/* FILTER KATEGORI */
+document.querySelectorAll(".category").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedCategory = button.dataset.category;
+
+    document.querySelectorAll(".category")
+      .forEach(item => item.classList.remove("active"));
+
+    button.classList.add("active");
+    renderMenu();
+  });
+});
+
+/* PENCARIAN */
+document.getElementById("search").addEventListener("input", event => {
+  searchText = event.target.value;
+  renderMenu();
+});
+
+/* LIHAT SEMUA MENU */
+document.getElementById("show-all").addEventListener("click", () => {
+  selectedCategory = "Semua";
+  searchText = "";
+  document.getElementById("search").value = "";
+
+  document.querySelectorAll(".category")
+    .forEach(item => item.classList.remove("active"));
+
+  document.querySelector('[data-category="Semua"]')
+    .classList.add("active");
+
+  renderMenu();
+});
+
+/* KERANJANG */
+function addItem(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+
+  if (cart[id] <= 0) delete cart[id];
+
+  renderCart();
+}
+
+function removeItem(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function getCount() {
+  return Object.values(cart)
+    .reduce((sum, qty) => sum + qty, 0);
+}
+
+function getTotal() {
+  return menu.reduce(
+    (sum, item) => sum + item.price * (cart[item.id] || 0),
+    0
+  );
+}
+
+function renderCart() {
+  const ids = Object.keys(cart).map(Number);
+
+  cartCount.textContent = getCount();
+  cartTotal.textContent = rupiah(getTotal());
+
+  if (ids.length === 0) {
+    cartItems.innerHTML = `
+      <div class="empty">
+        Keranjang masih kosong ☕<br>
+        Yuk, pilih menu favoritmu!
+      </div>`;
+    return;
+  }
+
+  cartItems.innerHTML = ids.map(id => {
+    const item = menu.find(product => product.id === id);
+
+    return `
+      <div class="cart-item">
+        <div>
+          <h4>${item.name}</h4>
+          <small>${rupiah(item.price)} / item</small>
+
+          <div class="qty">
+            <button data-minus="${id}" aria-label="Kurangi ${item.name}">−</button>
+            <span>${cart[id]}</span>
+            <button data-plus="${id}" aria-label="Tambah ${item.name}">+</button>
+          </div>
+        </div>
+
+        <div style="text-align:right">
+          <strong>${rupiah(item.price * cart[id])}</strong><br>
+          <button class="remove" data-remove="${id}">Hapus</button>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function openCart() {
+  overlay.classList.add("show");
+  drawer.classList.add("show");
+  drawer.setAttribute("aria-hidden", "false");
+}
+
+function closeCart() {
+  overlay.classList.remove("show");
+  drawer.classList.remove("show");
+  drawer.setAttribute("aria-hidden", "true");
+}
+
+/* MEMBUAT NOMOR ANTREAN */
+function makeOrder() {
+  if (getCount() === 0) {
+    alert("Keranjang masih kosong. Silakan pilih menu terlebih dahulu.");
+    return;
+  }
+
+  const total = getTotal();
+
+  const next = Number(
+    sessionStorage.getItem("coffeSenjaQueue") || 0
+  ) + 1;
+
+  sessionStorage.setItem("coffeSenjaQueue", String(next));
+
+  document.getElementById("queue-number").textContent =
+    "A" + String(next).padStart(3, "0");
+
+  document.getElementById("receipt-total").textContent =
+    rupiah(total);
+
+  closeCart();
+  orderModal.classList.add("show");
+
+  Object.keys(cart).forEach(id => delete cart[id]);
+  renderCart();
+}
+
+/* EVENT TOMBOL MENU */
+menuGrid.addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+
+  if (button) addItem(Number(button.dataset.add));
+});
+
+/* EVENT TOMBOL KERANJANG */
+cartItems.addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  if (button.dataset.plus) {
+    changeQty(Number(button.dataset.plus), 1);
+  }
+
+  if (button.dataset.minus) {
+    changeQty(Number(button.dataset.minus), -1);
+  }
+
+  if (button.dataset.remove) {
+    removeItem(Number(button.dataset.remove));
+  }
+});
+
+/* TOMBOL NAVIGASI */
+document.getElementById("open-cart")
+  .addEventListener("click", openCart);
+
+document.getElementById("bottom-cart")
+  .addEventListener("click", openCart);
+
+document.getElementById("bottom-order")
+  .addEventListener("click", openCart);
+
+document.getElementById("close-cart")
+  .addEventListener("click", closeCart);
+
+overlay.addEventListener("click", closeCart);
+
+document.getElementById("checkout")
+  .addEventListener("click", makeOrder);
+
+document.getElementById("finish-order")
+  .addEventListener("click", () => {
+    orderModal.classList.remove("show");
+  });
+
+orderModal.addEventListener("click", event => {
+  if (event.target === orderModal) {
+    orderModal.classList.remove("show");
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCart();
+    orderModal.classList.remove("show");
+  }
+});
+
+/* JALANKAN WEBSITE */
+renderMenu();
+renderCart();
+</script>
+
+</body>
+</html>
